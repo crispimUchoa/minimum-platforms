@@ -56,7 +56,7 @@ if __name__ == '__main__':
     if (args == 1):
         if argv[1] == '-a' or argv[1] == '--all':
             messages.show_solution_title()
-            for i in range(3):
+            for i in range(6):
                 solution = MinimumPlatforms(f'./tests/test_{i}.txt').solve()
                 print(f'Quantidade mímina de plataformas para o teste {i}:', solution)
                 print('-----------------------------------------------------')
