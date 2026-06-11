@@ -1,5 +1,6 @@
 from sys import argv
 import messages
+from time import time
 
 # Recebe um horário em hh:mm e retorna o valor em minutos após às 00:00
 def hhmm_to_minutes(time: str):
@@ -52,7 +53,8 @@ class MinimumPlatforms:
 if __name__ == '__main__':
     args = len(argv[1:])
     
-        
+    start = time()
+
     if (args == 1):
         if argv[1] == '-a' or argv[1] == '--all':
             messages.show_solution_title()
@@ -83,3 +85,7 @@ if __name__ == '__main__':
         print('Quantidade mímina de plataformas para o teste padrão:', solution)
     else:
         messages.show_exced_arguments_error(args)
+
+    duration = time() - start
+    duration = round(duration, 4)
+    print(f'Duração: {duration}s')
