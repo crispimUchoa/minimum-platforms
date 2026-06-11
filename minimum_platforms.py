@@ -46,6 +46,18 @@ class MinimumPlatforms:
         
         return platforms
 
+    def __str__(self):
+        start = time()
+        solution = self.solve()
+        duration = time() - start
+        duration = round(duration, 4)
+        n = len(self.arrivals)
+        inputs = [(self.arrivals[i], self.departures[i]) for i in range(n)]
+        inputs_str = ''
+        for inp in inputs:
+            inputs_str += f'{inp}\n'
+        
+        return messages.show_results(inputs_str, solution, duration)
 
 
 
@@ -53,15 +65,13 @@ class MinimumPlatforms:
 if __name__ == '__main__':
     args = len(argv[1:])
     
-    start = time()
 
     if (args == 1):
         if argv[1] == '-a' or argv[1] == '--all':
             messages.show_solution_title()
             for i in range(6):
-                solution = MinimumPlatforms(f'./tests/test_{i}.txt').solve()
-                print(f'Quantidade mímina de plataformas para o teste {i}:', solution)
-                print('-----------------------------------------------------')
+                mp = MinimumPlatforms(f'./tests/test_{i}.txt')
+                print(mp)
             
         elif argv[1] == '-h' or argv[1] == '--help':
             messages.show_help()
@@ -69,9 +79,8 @@ if __name__ == '__main__':
         else:
             try:
                 FILE_PATH = argv[1]
-                solution = MinimumPlatforms(FILE_PATH).solve()
-                messages.show_solution_title()
-                print(f'Quantidade mímina de plataformas para o arquvo {FILE_PATH}:', solution)
+                mp = MinimumPlatforms(FILE_PATH)
+                print(mp)
                 
             except FileNotFoundError:
                 print('Erro: Arquivo não encontrado.')
@@ -80,12 +89,9 @@ if __name__ == '__main__':
                 print('Formatação de arquivo inválida. Para mais informações, use --help ou -h.')
 
     elif (args == 0):
-        messages.show_solution_title()
-        solution = MinimumPlatforms().solve()
-        print('Quantidade mímina de plataformas para o teste padrão:', solution)
+        mp = MinimumPlatforms()
+        print(mp)
     else:
         messages.show_exced_arguments_error(args)
 
-    duration = time() - start
-    duration = round(duration, 4)
-    print(f'Duração: {duration}s')
+

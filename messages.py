@@ -34,3 +34,14 @@ Para mais informações, execute minimum_platforms.py --help
 
 def show_solution_title():
     print('---------------------------- MINIMUM PLATFORMS SOLUTION ----------------------------\n')
+
+def show_results(inputs_str: str, solution: int, duration: int):
+    return f"""
+--------------------- RESULTADOS ---------------------
+ENTRADAS:
+{inputs_str}
+SAIDA:
+Quantidade Mínima de plataformas: {solution}
+Duração: {duration}s
+------------------------------------------------------
+"""
